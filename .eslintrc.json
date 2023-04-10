@@ -1,3 +1,20 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": [
+    "next/core-web-vitals",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "plugins": [
+    "@next/eslint-plugin-next",
+    "eslint-plugin-react",
+    "eslint-plugin-react-hooks"
+  ],
+  "rules": {
+    "semi": "error",
+    "prefer-const": "error",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    "jsx-quotes": "off"
+    // "": "error"
+  }
 }
