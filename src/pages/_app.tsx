@@ -4,22 +4,22 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 
 import { persistor, wrapper } from '@/stores';
-import { MenuLayout, PublicLayout, PrivateLayout } from '@/layouts';
-import { PrivatePaths, RestrictedPaths } from '@/constants/common-constants';
+import { RestrictedPaths } from '@/constants/common-constants';
 import '@/styles/style.scss';
+import { PublicLayout } from '@/layouts';
 
 function App({ Component, ...passProps }: AppProps) {
   const router = useRouter();
   const { store, props } = wrapper.useWrappedStore(passProps);
   const { pageProps } = props;
 
-  const isPrivatePath = PrivatePaths.includes(router.pathname);
+  // const isPrivatePath = PrivatePaths.includes(router.pathname);
   const isRestrictedPath = RestrictedPaths.includes(router.pathname);
 
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
-        {isPrivatePath ? (
+        {/* {isPrivatePath ? (
           <PrivateLayout>
             <MenuLayout>
               <Component {...pageProps} />
@@ -29,7 +29,11 @@ function App({ Component, ...passProps }: AppProps) {
           <PublicLayout isRestricted={isRestrictedPath}>
             <Component {...pageProps} />
           </PublicLayout>
-        )}
+        )} */}
+
+        <PublicLayout isRestricted={isRestrictedPath}>
+          <Component {...pageProps} />
+        </PublicLayout>
       </PersistGate>
     </Provider>
   );
